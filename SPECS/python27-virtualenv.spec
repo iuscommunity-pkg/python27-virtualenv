@@ -1,9 +1,14 @@
 # sitelib for noarch packages
 %{!?python_sitelib: %global python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
+%define pyver 27
+%define pybasever 2.7
 
-Name:           python-virtualenv
+%define __python /usr/bin/python%{pybasever}
+
+
+Name:           python%{pyver}-virtualenv
 Version:        1.10.1
-Release:        1%{?dist}
+Release:        2.ius%{?dist}
 Summary:        Tool to create isolated Python environments
 
 Group:          Development/Languages
@@ -13,13 +18,8 @@ Source0:        http://pypi.python.org/packages/source/v/virtualenv/virtualenv-%
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildArch:      noarch
-BuildRequires:  python2-devel
-Requires:       python-setuptools, python2-devel
-
-%if 0%{?fedora}
-BuildRequires:  python-sphinx
-%endif
-
+BuildRequires:  python%{pyver}-devel
+Requires:       python%{pyver}-setuptools, python%{pyver}-devel
 
 %description
 virtualenv is a tool to create isolated Python environments. virtualenv
@@ -27,20 +27,13 @@ is a successor to workingenv, and an extension of virtual-python. It is
 written by Ian Bicking, and sponsored by the Open Planning Project. It is
 licensed under an MIT-style permissive license.
 
-
 %prep
 %setup -q -n virtualenv-%{version}
-%{__sed} -i -e "1s|#!/usr/bin/env python||" virtualenv.py 
+%{__sed} -i -e "1s|#!/usr/bin/env python||" virtualenv.py
 
 %build
 # Build code
 %{__python} setup.py build
-
-# Build docs on Fedora
-%if 0%{?fedora} > 0
-%{__python} setup.py build_sphinx
-%endif
-
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -55,16 +48,15 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root,-)
 %doc docs/*rst PKG-INFO AUTHORS.txt LICENSE.txt
-# Include sphinx docs on Fedora
-%if 0%{?fedora} > 0
-%doc build/sphinx/*
-%endif
 # For noarch packages: sitelib
 %{python_sitelib}/*
 %attr(755,root,root) %{_bindir}/virtualenv*
 
 
 %changelog
+* Wed Oct 16 2013 Ben Harper <ben.harper@rackspace.com> - 1.10.1-2.ius
+- porting from EPEL
+
 * Thu Aug 15 2013 Steve 'Ashcrow' Milner <me@stevemilner.org> - 1.10.1-1
 - Upstream upgraded pip to v1.4.1
 - Upstream upgraded setuptools to v0.9.8 (fixes CVE-2013-1633)
