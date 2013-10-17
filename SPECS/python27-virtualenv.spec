@@ -1,10 +1,8 @@
+%define __python /usr/bin/python%{pybasever}
 # sitelib for noarch packages
 %{!?python_sitelib: %global python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
 %define pyver 27
 %define pybasever 2.7
-
-%define __python /usr/bin/python%{pybasever}
-
 
 Name:           python%{pyver}-virtualenv
 Version:        1.10.1
