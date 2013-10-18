@@ -6,7 +6,7 @@
 
 Name:           python%{pyver}-virtualenv
 Version:        1.10.1
-Release:        2.ius%{?dist}
+Release:        3.ius%{?dist}
 Summary:        Tool to create isolated Python environments
 
 Group:          Development/Languages
@@ -36,6 +36,7 @@ licensed under an MIT-style permissive license.
 %install
 rm -rf $RPM_BUILD_ROOT
 %{__python} setup.py install --skip-build --root $RPM_BUILD_ROOT
+rm ${RPM_BUILD_ROOT}%{_bindir}/virtualenv
 rm -f build/sphinx/html/.buildinfo
 
 
@@ -52,6 +53,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Fri Oct 18 2013 Ben Harper <ben.harper@rackspace.com> - 1.10.1-3.ius
+- removing /usr/bin/virtualenv as it conflicts with python-virtualenv from EPEL
+
 * Wed Oct 16 2013 Ben Harper <ben.harper@rackspace.com> - 1.10.1-2.ius
 - porting from EPEL
 
