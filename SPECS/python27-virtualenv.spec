@@ -5,8 +5,8 @@
 %define pybasever 2.7
 
 Name:           python%{pyver}-virtualenv
-Version:        1.10.1
-Release:        3.ius%{?dist}
+Version:        1.11
+Release:        1.ius%{?dist}
 Summary:        Tool to create isolated Python environments
 
 Group:          Development/Languages
@@ -53,6 +53,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Fri Jan 03 2014 Ben Harper <ben.harper@rackspace.com> - 1.11-1.ius
+- Latest sources from upstream
+
 * Fri Oct 18 2013 Ben Harper <ben.harper@rackspace.com> - 1.10.1-3.ius
 - removing /usr/bin/virtualenv as it conflicts with python-virtualenv from EPEL
 
