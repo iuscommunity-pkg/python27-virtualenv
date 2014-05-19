@@ -5,7 +5,7 @@
 %define pybasever 2.7
 
 Name:           python%{pyver}-virtualenv
-Version:        1.11.5
+Version:        1.11.6
 Release:        1.ius%{?dist}
 Summary:        Tool to create isolated Python environments
 
@@ -50,6 +50,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/virtualenv*
 
 %changelog
+* Mon May 19 2014 Ben Harper <ben.harper@rackspace.com> - 1.11.6-1.ius
+- Latest sources from upstream
+
 * Mon May 05 2014 Carl George <carl.george@rackspace.com> - 1.11.5-1.ius
 - Latest sources from upstream
 
