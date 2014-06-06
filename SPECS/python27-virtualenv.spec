@@ -8,16 +8,15 @@ Name:           python%{pyver}-virtualenv
 Version:        1.11.6
 Release:        1.ius%{?dist}
 Summary:        Tool to create isolated Python environments
-
 Group:          Development/Languages
 License:        MIT
 URL:            http://pypi.python.org/pypi/virtualenv
 Source0:        http://pypi.python.org/packages/source/v/virtualenv/virtualenv-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-
 BuildArch:      noarch
 BuildRequires:  python%{pyver}-devel
 Requires:       python%{pyver}-setuptools, python%{pyver}-devel
+
 
 %description
 virtualenv is a tool to create isolated Python environments. virtualenv
@@ -25,13 +24,15 @@ is a successor to workingenv, and an extension of virtual-python. It is
 written by Ian Bicking, and sponsored by the Open Planning Project. It is
 licensed under an MIT-style permissive license.
 
+
 %prep
 %setup -q -n virtualenv-%{version}
 %{__sed} -i -e "1s|#!/usr/bin/env python||" virtualenv.py
 
+
 %build
-# Build code
 %{__python} setup.py build
+
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -39,15 +40,17 @@ rm -rf $RPM_BUILD_ROOT
 rm ${RPM_BUILD_ROOT}%{_bindir}/virtualenv
 rm -f build/sphinx/html/.buildinfo
 
+
 %clean
 rm -rf $RPM_BUILD_ROOT
+
 
 %files
 %defattr(-,root,root,-)
 %doc docs/*rst PKG-INFO AUTHORS.txt LICENSE.txt
-# For noarch packages: sitelib
 %{python_sitelib}/*
 %attr(755,root,root) %{_bindir}/virtualenv*
+
 
 %changelog
 * Mon May 19 2014 Ben Harper <ben.harper@rackspace.com> - 1.11.6-1.ius
