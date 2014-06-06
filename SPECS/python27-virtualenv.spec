@@ -35,10 +35,10 @@ licensed under an MIT-style permissive license.
 
 
 %install
-rm -rf $RPM_BUILD_ROOT
-%{__python} setup.py install --skip-build --root $RPM_BUILD_ROOT
-rm ${RPM_BUILD_ROOT}%{_bindir}/virtualenv
-rm -f build/sphinx/html/.buildinfo
+%{__rm} -rf %{buildroot}
+%{__python} setup.py install --skip-build --root %{buildroot}
+%{__rm} -f %{buildroot}%{_bindir}/virtualenv
+%{__rm} -f build/sphinx/html/.buildinfo
 
 
 %clean
