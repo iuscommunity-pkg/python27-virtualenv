@@ -16,8 +16,8 @@ Summary:        Tool to create isolated Python environments
 Vendor:         IUS Community Project
 Group:          Development/Languages
 License:        MIT
-URL:            http://pypi.python.org/pypi/virtualenv
-Source0:        http://pypi.python.org/packages/source/v/virtualenv/virtualenv-%{version}.tar.gz
+URL:            https://pypi.python.org/pypi/virtualenv
+Source0:        https://pypi.python.org/packages/source/%{src}/%{srcname}/%{srcname}-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 BuildRequires:  python%{iusver}-devel
