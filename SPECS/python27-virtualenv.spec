@@ -8,6 +8,7 @@ Name:           python%{pyver}-virtualenv
 Version:        1.11.6
 Release:        1.ius%{?dist}
 Summary:        Tool to create isolated Python environments
+Vendor:         IUS Community Project
 Group:          Development/Languages
 License:        MIT
 URL:            http://pypi.python.org/pypi/virtualenv
