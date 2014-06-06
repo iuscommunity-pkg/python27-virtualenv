@@ -6,7 +6,7 @@
 %global python2_sitelib  %(%{__python2} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")
 %global python2_sitearch %(%{__python2} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")
 %global __os_install_post %{__python27_os_install_post}
-%global srcname pip
+%global srcname virtualenv
 %global src %(echo %{srcname} | cut -c1)
 
 Name:           python%{iusver}-%{srcname}
@@ -16,7 +16,7 @@ Summary:        Tool to create isolated Python environments
 Vendor:         IUS Community Project
 Group:          Development/Languages
 License:        MIT
-URL:            https://pypi.python.org/pypi/virtualenv
+URL:            https://pypi.python.org/pypi/%{srcname}
 Source0:        https://pypi.python.org/packages/source/%{src}/%{srcname}/%{srcname}-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
