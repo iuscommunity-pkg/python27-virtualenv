@@ -1,10 +1,15 @@
-%define __python /usr/bin/python%{pybasever}
-# sitelib for noarch packages
-%{!?python_sitelib: %global python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
-%define pyver 27
-%define pybasever 2.7
+%global pymajor 2
+%global pyminor 7
+%global pyver %{pymajor}.%{pyminor}
+%global iusver %{pymajor}%{pyminor}
+%global __python2 %{_bindir}/python%{pyver}
+%global python2_sitelib  %(%{__python2} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")
+%global python2_sitearch %(%{__python2} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")
+%global __os_install_post %{__python27_os_install_post}
+%global srcname pip
+%global src %(echo %{srcname} | cut -c1)
 
-Name:           python%{pyver}-virtualenv
+Name:           python%{iusver}-%{srcname}
 Version:        1.11.6
 Release:        1.ius%{?dist}
 Summary:        Tool to create isolated Python environments
@@ -15,8 +20,10 @@ URL:            http://pypi.python.org/pypi/virtualenv
 Source0:        http://pypi.python.org/packages/source/v/virtualenv/virtualenv-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
-BuildRequires:  python%{pyver}-devel
-Requires:       python%{pyver}-setuptools, python%{pyver}-devel
+BuildRequires:  python%{iusver}-devel
+BuildRequires:  python%{iusver}-setuptools
+Requires:       python%{iusver}-devel
+Requires:       python%{iusver}-setuptools
 
 
 %description
@@ -27,17 +34,17 @@ licensed under an MIT-style permissive license.
 
 
 %prep
-%setup -q -n virtualenv-%{version}
-%{__sed} -i -e "1s|#!/usr/bin/env python||" virtualenv.py
+%setup -q -n %{srcname}-%{version}
+find -name '*.py' -type f -print0 | xargs -0 sed -i '1s|python|&%{pyver}|'
 
 
 %build
-%{__python} setup.py build
+%{__python2} setup.py build
 
 
 %install
 %{__rm} -rf %{buildroot}
-%{__python} setup.py install --skip-build --root %{buildroot}
+%{__python2} setup.py install --optimize 1 --skip-build --root %{buildroot}
 %{__rm} -f %{buildroot}%{_bindir}/virtualenv
 %{__rm} -f build/sphinx/html/.buildinfo
 
@@ -49,8 +56,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root,-)
 %doc docs/*rst PKG-INFO AUTHORS.txt LICENSE.txt
-%{python_sitelib}/*
-%attr(755,root,root) %{_bindir}/virtualenv*
+%{python2_sitelib}/*
+%attr(755,root,root) %{_bindir}/virtualenv-%{pyver}
 
 
 %changelog
