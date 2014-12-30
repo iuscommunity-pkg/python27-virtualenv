@@ -10,8 +10,8 @@
 %global src %(echo %{srcname} | cut -c1)
 
 Name:           python%{iusver}-%{srcname}
-Version:        1.11.6
-Release:        2.ius%{?dist}
+Version:        12.0.4
+Release:        1.ius%{?dist}
 Summary:        Tool to create isolated Python environments
 Vendor:         IUS Community Project
 Group:          Development/Languages
@@ -61,6 +61,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Fri Dec 26 2014 Carl George <carl.george@rackspace.com> - 12.0.4-1.ius
+- Latest upstream
+
 * Fri Jun 06 2014 Carl George <carl.george@rackspace.com> - 1.11.6-2.ius
 - Override __os_install_post to fix .pyc/pyo magic
 - Implement python packaging best practices
