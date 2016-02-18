@@ -10,7 +10,7 @@
 %global src %(echo %{srcname} | cut -c1)
 
 Name:           python%{iusver}-%{srcname}
-Version:        14.0.5
+Version:        14.0.6
 Release:        1.ius%{?dist}
 Summary:        Tool to create isolated Python environments
 Vendor:         IUS Community Project
@@ -60,6 +60,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Thu Feb 18 2016 Ben Harper <ben.harper@rackspace.com> - 14.0.6-1.ius
+- Latest upstream
+
 * Mon Feb 01 2016 Ben Harper <ben.harper@rackspace.com> - 14.0.5-1.ius
 - Latest upstream
 
