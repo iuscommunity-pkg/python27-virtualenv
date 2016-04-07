@@ -180,13 +180,13 @@ rm -rf $RPM_BUILD_ROOT
 * Thu Jul 22 2010 David Malcolm <dmalcolm@redhat.com> - 1.4.8-4
 - Rebuilt for https://fedoraproject.org/wiki/Features/Python_2.7/MassRebuild
 
-* Tue Jul  7 2010 Steve 'Ashcrow' Milner <me@stevemilner.org> - 1.4.8-3
+* Wed Jul  7 2010 Steve 'Ashcrow' Milner <me@stevemilner.org> - 1.4.8-3
 - Fixed EPEL installation issue from BZ#611536
 
 * Tue Jun  8 2010 Steve 'Ashcrow' Milner <me@stevemilner.org> - 1.4.8-2
 - Only replace the python shebang on the first line (Robert Buchholz)
 
-* Fri Apr 28 2010 Steve 'Ashcrow' Milner <me@stevemilner.org> - 1.4.8-1
+* Wed Apr 28 2010 Steve 'Ashcrow' Milner <me@stevemilner.org> - 1.4.8-1
 - update pip to 0.7
 - move regen-docs into bin/
 - Fix #31, make activate_this.py work on Windows (use Lib/site-packages)
