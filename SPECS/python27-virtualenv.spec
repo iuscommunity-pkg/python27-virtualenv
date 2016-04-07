@@ -1,15 +1,11 @@
-%global pymajor 2
-%global pyminor 7
-%global pyver %{pymajor}.%{pyminor}
-%global iusver %{pymajor}%{pyminor}
-%global __python2 %{_bindir}/python%{pyver}
-%global python2_sitelib  %(%{__python2} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")
-%global python2_sitearch %(%{__python2} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")
+%global ius_suffix 27
+%global __python2 %{_bindir}/python2.7
+%global python2_sitelib %(%{__python2} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")
+%global python2_version %(%{__python2} -c "import sys; sys.stdout.write(sys.version[:3])")
 %global __os_install_post %{__python27_os_install_post}
 %global srcname virtualenv
-%global src %(echo %{srcname} | cut -c1)
 
-Name:           python%{iusver}-%{srcname}
+Name:           python%{ius_suffix}-%{srcname}
 Version:        15.0.1
 Release:        1.ius%{?dist}
 Summary:        Tool to create isolated Python environments
@@ -17,13 +13,13 @@ Vendor:         IUS Community Project
 Group:          Development/Languages
 License:        MIT
 URL:            https://pypi.python.org/pypi/%{srcname}
-Source0:        https://pypi.python.org/packages/source/%{src}/%{srcname}/%{srcname}-%{version}.tar.gz
+Source0:        https://pypi.python.org/packages/source/v/virtualenv/virtualenv-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
-BuildRequires:  python%{iusver}-devel
-BuildRequires:  python%{iusver}-setuptools
-Requires:       python%{iusver}-devel
-Requires:       python%{iusver}-setuptools
+BuildRequires:  python%{ius_suffix}-devel
+BuildRequires:  python%{ius_suffix}-setuptools
+Requires:       python%{ius_suffix}-devel
+Requires:       python%{ius_suffix}-setuptools
 
 
 %description
@@ -56,7 +52,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %doc docs/*rst PKG-INFO AUTHORS.txt LICENSE.txt
 %{python2_sitelib}/*
-%attr(755,root,root) %{_bindir}/virtualenv-%{pyver}
+%attr(755,root,root) %{_bindir}/virtualenv-%{python2_version}
 
 
 %changelog
