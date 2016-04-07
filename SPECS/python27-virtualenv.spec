@@ -41,7 +41,7 @@ find -type f -name \*.py -print0 | xargs -0 sed -i -e '1 {/^#!\//d}'
 %install
 %{__rm} -rf %{buildroot}
 %{__python2} setup.py install --optimize 1 --skip-build --root %{buildroot}
-%{__rm} -f %{buildroot}%{_bindir}/virtualenv
+mv %{buildroot}/%{_bindir}/virtualenv %{buildroot}/%{_bindir}/virtualenv-%{python2_version}
 %{__rm} -f build/sphinx/html/.buildinfo
 
 
