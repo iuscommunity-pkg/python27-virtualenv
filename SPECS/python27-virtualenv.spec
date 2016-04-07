@@ -35,7 +35,7 @@ licensed under an MIT-style permissive license.
 
 %prep
 %setup -q -n %{srcname}-%{version}
-find -name '*.py' -type f -print0 | xargs -0 sed -i '1s|python|&%{pyver}|'
+find -type f -name \*.py -print0 | xargs -0 sed -i -e '1 {/^#!\//d}'
 
 
 %build
@@ -62,6 +62,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Thu Apr 07 2016 Carl George <carl.george@rackspace.com> - 15.0.1-1.ius
 - Latest upstream
+- Strip all shebangs
 
 * Thu Feb 18 2016 Ben Harper <ben.harper@rackspace.com> - 14.0.6-1.ius
 - Latest upstream
