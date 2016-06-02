@@ -13,7 +13,7 @@ Vendor:         IUS Community Project
 Group:          Development/Languages
 License:        MIT
 URL:            https://pypi.python.org/pypi/%{srcname}
-Source0:        https://pypi.python.org/packages/source/v/virtualenv/virtualenv-%{version}.tar.gz
+Source0:        https://files.pythonhosted.org/packages/source/v/virtualenv/virtualenv-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 BuildRequires:  python%{ius_suffix}-devel
@@ -57,6 +57,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Thu Jun 02 2016 Carl George <carl.george@rackspace.com> - 15.0.2-1.ius
 - Latest upstream
+- Update Source0 URL
 
 * Thu Apr 07 2016 Carl George <carl.george@rackspace.com> - 15.0.1-1.ius
 - Latest upstream
