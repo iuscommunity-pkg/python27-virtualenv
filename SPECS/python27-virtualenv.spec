@@ -6,7 +6,7 @@
 %global srcname virtualenv
 
 Name:           python%{ius_suffix}-%{srcname}
-Version:        15.0.3
+Version:        15.1.0
 Release:        1.ius%{?dist}
 Summary:        Tool to create isolated Python environments
 Vendor:         IUS Community Project
@@ -55,6 +55,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Wed Nov 16 2016 Ben Harper <ben.harper@rackspace.com> - 15.1.0-1.ius
+- Latest upstream
+
 * Mon Aug 08 2016 Carl George <carl.george@rackspace.com> - 15.0.3-1.ius
 - Latest upstream
 
